@@ -14,7 +14,8 @@ module.exports = {
     },
  };
 ```
-3)установить gulg
+3)установитt gulg
+
 nmp i gulp --save-dev
 npm i gulp-autoprefixer gulp-clean-css -save-dev gulp-watch --save-dev
 
