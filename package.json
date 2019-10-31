@@ -1,0 +1,29 @@
+{
+  "name": "less10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "_node.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "gulp-autoprefixer": "^7.0.1",
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-watch": "^5.0.1",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-stream": "^5.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx gulp"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "browserslist": [
+    "last 2 version"
+  ]
+}
