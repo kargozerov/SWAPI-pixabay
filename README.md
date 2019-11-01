@@ -19,3 +19,4 @@ module.exports = {
 nmp i gulp --save-dev
 npm i gulp-autoprefixer gulp-clean-css -save-dev gulp-watch --save-dev
 
+4) gulp watch
