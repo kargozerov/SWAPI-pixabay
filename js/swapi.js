@@ -2,7 +2,7 @@ window.addEventListener("load", () => {
 
     const search = document.querySelector('.search');
     const cardConteiner = document.querySelector('.cardContainer');
-//Запрос API фильм
+//Запрос API фильмы
     function getFilm() {
         return axios.get('https://swapi.co/api/films')
             .then(function (response) {
@@ -82,6 +82,5 @@ window.addEventListener("load", () => {
 
     //запуск поиска фильмов
     search.onkeyup = searchFilm;
-
 
 });

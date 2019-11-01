@@ -19,7 +19,7 @@ gulp.task("build-js", () => {
 });
 
 gulp.task("watch", () => {
-    gulp.watch(["_node.js"], gulp.series("build-js"));
+    gulp.watch(["./js/swapi.js"], gulp.series("build-js"));
    return gulp.watch(["css/*.css"], gulp.series("build-css"));
 });
 
