@@ -2,12 +2,11 @@ window.addEventListener("load", () => {
 
     const search = document.querySelector('.search');
     const cardConteiner = document.querySelector('.cardContainer');
-//Запрос API фильмы
+     //Запрос API фильмы
     function getFilm() {
         return axios.get('https://swapi.co/api/films')
             .then(function (response) {
                 for (let i = 0; i < response.data.results.length; i++) {
-
                     const loaderCard = document.querySelector('.loaderCard');
                     loaderCard.style.display = 'none';
                     const loaderCard__Container = document.querySelector('.loaderCard__Container');
@@ -25,12 +24,14 @@ window.addEventListener("load", () => {
     }
 
     getFilm();
+
     //запрос API на картинку
     function getImage(films) {
         // console.log(films);
         let API_KEY = '14082008-771b0f9b47719e2f6a1f8fc90';
         const img__pixabay = document.querySelectorAll('.img__pixabay');
-        for (let i = 0; i < img__pixabay.length; i++) {
+        counter = img__pixabay.length;
+         for (let i = 0; i < counter; i++) {
             let URL = "https://pixabay.com/api/?key=" + API_KEY + "&q=" + encodeURIComponent(films[i].title);
             axios.get(`${URL}`)
                 .then(function (response) {
@@ -39,10 +40,20 @@ window.addEventListener("load", () => {
                         loader[j].style.display = 'none';
                     }
                     if (response.data.totalHits !== 0) {
-                        img__pixabay[i].innerHTML = `<div><img src="${response.data.hits[0].webformatURL}" alt=""/></div>`
+                        if (counter > 7){
+                            let n = counter;
+                            img__pixabay[i+n-7].innerHTML = `<div><img src="${response.data.hits[0].webformatURL}" alt=""/></div>`
+                        } else {img__pixabay[i].innerHTML = `<div><img src="${response.data.hits[0].webformatURL}" alt=""/></div>`}
+
                     } else {
-                        console.log(`Неудалось найти картинку по названию ${films[i].title}`);
-                        img__pixabay[i].innerHTML = `<img src="img/Placeholder.png" alt=""/>`;
+                        if (counter > 7){
+                            let n = counter;
+                            console.log(`Неудалось найти картинку по названию ${films[i].title}`);
+                            img__pixabay[i+n-7].innerHTML = `<img src="img/Placeholder.png" alt=""/>`;
+                        } else {
+                            console.log(`Неудалось найти картинку по названию ${films[i].title}`);
+                            img__pixabay[i].innerHTML = `<img src="img/Placeholder.png" alt=""/>`;
+                        }
                     }
 
                 })
@@ -58,28 +69,24 @@ window.addEventListener("load", () => {
     //Поиск по загруженым фильмам
     function searchFilm() {
         const filmTitle = document.querySelectorAll('.filmTitle');
-
         let input, card, a, i, filter;
         card = document.querySelectorAll('.card');
         input = document.querySelector('.search');
         filter = input.value.toUpperCase();
-
         for (i = 0; i < card.length; i++) {
-
             const cardContainer = document.querySelector('.cardContainer');
             a = filmTitle[i].getElementsByTagName("a")[0];
-
             if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 card[i].style.display = "";
+                card[i].style.margin = '';
                 cardContainer.style.justifyContent = 'space-evenly';
+                card[i].style.justifyContent = 'space-around';
             } else {
                 card[i].style.display = "none";
-                cardContainer.style.flexDirection = 'row';
-                cardContainer.style.justifyContent = 'center';
+
             }
         }
     }
-
     //запуск поиска фильмов
     search.onkeyup = searchFilm;
 
